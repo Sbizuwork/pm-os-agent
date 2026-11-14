@@ -12,26 +12,26 @@ I looked at splitting Cortex into a team and mostly talked myself out of it. The
 
 ## 2. Topology
 
-**Pattern:** _single+subagents · sequential · parallel+aggregate · hierarchical_
+**Pattern:** single + subagents
 
 ```
-[ simple text diagram of the flow ]
-e.g.  task → [Research] + [GitHub/Jira reader] → [Writer] → [Critic ✓] → human checkpoint → queued
+[PM task comes in] → [Cortex: pulls project data, drafts the update and the story batch]
+→ [Critic: checks the draft] → fail → back to Cortex to revise (max 2) → still failing → escalate to me
+→ pass → [My review checkpoint] → queued. Nothing sends or posts on its own.
 ```
+
+One agent does the work, one subagent checks it. There is no fleet and no parallel work, because the steps depend on each other.
 
 ## 3. Roster
 
 | Agent / subagent | Responsibility | Runs which Loop Spec |
 |---|---|---|
-| _Chief-of-staff (Cortex)_ | _orchestrates + assembles the update_ | _M2 loop_ |
-| _Research subagent_ | _pulls competitive / market context_ | _research loop_ |
-| _GitHub/Jira reader_ | _summarizes recent activity_ | _read loop_ |
-| _Critic / Validator_ | _checks the draft before it advances_ | _validation loop_ |
-| _…_ | | |
+| Cortex (chief of staff) | Pulls project data, drafts the leadership update, proposes the story batch | My M2 loop |
+ | Critic (validator subagent) | Checks the draft against the four rules in Field 5 and returns a pass or a fail with reasons | Validation loop only |
 
 ## 4. Communication & hand-offs
 
-_What passes between the parts? Any protocol (MCP / A2A, optional, note if used)._
+Cortex hands the critic two things: the draft, and the source data it pulled, because the critic cannot check tracing without the sources. The critic hands back one of two things, a pass, or a fail with the specific check that failed and why. The hand-off is plain and in-process, no MCP or A2A protocol. Anything fancier would be decoration for a two-agent setup.
 
 ## 5. The validator
 
@@ -41,7 +41,7 @@ _What passes between the parts? Any protocol (MCP / A2A, optional, note if used)
 
 ## 6. State: shared vs isolated
 
-_What's shared across the fleet vs kept isolated per subagent (carry from M2)._
+Shared: the source data and the draft. Both agents work from the same facts. Isolated: the reasoning. The critic never sees how Cortex talked itself into the draft, and Cortex never sees the critic's reasoning, only the verdict and the named failure. That separation is the whole reason the critic exists. Project state stays per project, from my Module 2 spec, nothing leaks across projects.
 
 ## 7. Cost & latency budget
 
