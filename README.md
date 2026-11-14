@@ -1,5 +1,7 @@
 # Cortex: PM Chief-of-Staff Agent
 
+Hi, I'm Sena. I'm a product manager based in Minneapolis and I'm taking the Advanced AI Agents course through Product School. This repo is where I'm building Cortex, a chief of staff agent for product managers, as I work through the class. Still getting set up, more to come as the modules go.
+
 > My final project for Product School's **Agentic Loops for PMs** certification. A chief-of-staff agent that turns raw inputs (project state, GitHub/Jira activity, roadmap, past updates) into finished PM work, a leadership status update and a proposed backlog for a human to clear, built loop-first, bounded, grown into a fleet, and shipped up the Trust Ladder.
 
 This is a **template repo**. Click **Use this template → Create a new repository**, name it `pm-os-agent` (or your own agent's name), and fill in one folder per module as you go.
