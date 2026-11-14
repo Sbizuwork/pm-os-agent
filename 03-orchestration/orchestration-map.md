@@ -35,8 +35,9 @@ _What passes between the parts? Any protocol (MCP / A2A, optional, note if used)
 
 ## 5. The validator
 
-- **What the critic checks:** _grounded claims · norms compliance · no confidential leak · nothing posted/committed_
-- **Fail action:** _what happens when it fails (retry · revise · escalate to human)_
+- **What the critic checks:** Four things. 1) Every number or date in the draft traces back to the data Cortex pulled, nothing invented. 2) The draft names the right project and the right issue and PR IDs. 3) No commitment language, no ship dates promised and no promises made to leadership. 4) The story batch stays at or under my cap of 8, and if it is over the critic flags it instead of quietly trimming it.
+- **Fail action:** Revise. The critic sends the draft back to Cortex with the failed check named, and Cortex rewrites. That can happen at most 2 times. If it still fails after 2 revisions, it stops and escalates to me with the failure noted.
+-  **Pass action:** A passing draft goes to my review checkpoint. It never sends or posts on its own.
 
 ## 6. State: shared vs isolated
 
