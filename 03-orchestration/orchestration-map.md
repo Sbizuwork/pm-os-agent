@@ -8,7 +8,7 @@
 
 ## 1. Why split? (or why not)
 
-_Run the default-to-simple check. Do you actually need subagents/a fleet? What's the real reason (separation of concerns · parallelism · independent validation · context-window pressure)? If not, say so and stop here._
+I looked at splitting Cortex into a team and mostly talked myself out of it. The work is one chain, pull the data, then draft from it, so there is nothing to run in parallel and no separate job that needs its own agent. The context is small too, one project at a time, nothing close to overflowing. The one real reason to split is checking. If Cortex grades its own draft, it grades it with the same blind spots it wrote it with. So the design is Cortex plus one critic subagent whose only job is to check the draft before it gets to me. That is the whole team.
 
 ## 2. Topology
 
