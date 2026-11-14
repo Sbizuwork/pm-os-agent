@@ -45,4 +45,4 @@ Shared: the source data and the draft. Both agents work from the same facts. Iso
 
 ## 7. Cost & latency budget
 
-_Coordination has a price. Rough token/latency cost of the fleet vs a single agent. (Forward-link to M5 bounds.)_
+The critic costs me one extra model call on every draft that passes, a fraction of a cent and a few extra seconds of waiting. Worst case, a draft fails twice and gets rewritten twice, so that is 3 critic calls and 2 extra drafts before it escalates to me. Even that worst case stays well inside the $0.50 per run cost cap already set in the code. What I get for that price is that every draft that reaches me has already been fact-checked once, so I do not have to recheck every number myself. I will turn this into a hard bound in Module 5.
