@@ -9,16 +9,16 @@
 ## What it does
 
 
-_One paragraph: the agent in action, end to end._
+Cortex is my chief-of-staff agent for one job: the weekly leadership status update. A task brief arrives, or the Monday sweep fires, and Cortex pulls the project record, the recent activity, past updates, the roadmap, and the team norms for that one project. It drafts the update from the pull, proposes the next batch of backlog stories, and hands the draft to a critic that checks every number and date against the pulled data. If the critic passes it, the draft waits in my review queue. If the critic rejects it twice, a bound trips, or the data is not there, Cortex escalates to me with the draft held. It has never posted anything, because it cannot: there is no post tool.
 
 
 ## How you built it
 
 
-- **Coding agent:** _which one you directed (Claude Code / Cursor / Codex)_
-- **Model + bounds:** _model used, max iterations, cost cap, queue cap_
-- **Repo / config:** _path to your build in `00-build/`_
-- **Live link:** _[shareable URL, optional bonus]_
+- **Coding agent:** an AI coding assistant, directed by me through the course lab runbooks; I made the decisions and approved every commit
+- **Model + bounds:** gpt-4o-mini; max iterations 8, revision cap 2, cost cap $0.50 per run, queue cap 10 stories
+- **Repo / config:** the build lives in `00-build/` in this repo (agent.py, tools.py, prompts.py, fixtures/)
+- **Live link:** none; it runs locally from the repo, see "How to run it" below
 
 
 ## Screenshots (required, collected M2 to M6)
@@ -29,12 +29,12 @@ Real screenshots of *your* Cortex running. These are the `00-build/CORTEX-ANATOM
 
 | # | Screenshot | What it shows | From |
 |---|---|---|---|
-| 1 | _[img]_ | happy-path run: a real drafted update + the HITL checkpoint (queued, not posted) | M2 |
+| 1 | [captured run](#m4-grounded-run-on-the-ingested-data-pack) | happy-path run: a real drafted update + the HITL checkpoint (queued, not posted) | M2 |
 | 2 | [captured run](#m3-the-critic-rejecting-a-bad-draft) | the critic rejecting a bad draft (revise/block) | M3 |
 | 3 | [captured runs](#m4-grounded-run-on-the-ingested-data-pack) | a grounded update citing pulled activity + a caught hallucination | M4 |
 | 4 | [captured run](#m5-jailbreak-refusal-and-escalation-instead-of-posting) | jailbreak refused + escalated | M5 |
 | 5 | [captured run](#m5-bound-trip-the-iteration-cap-does-the-stopping) | an iteration/cost/queue bound halting a runaway | M5 |
-| 6 | _[img]_ | end-to-end run | M6 |
+| 6 | [captured run](#m6-end-to-end-run-the-full-loop-in-one-pass) | end-to-end run | M6 |
 
 
 ## Captured runs
@@ -97,6 +97,10 @@ Ran the happy-path task with `CORTEX_MAX_ITERATIONS=2`. Output: "MAX ITERATIONS 
 ### Reflection on the probes
 
 What I see as the human in every one of these runs is a held draft and a reason, never a post I did not approve. Across the jailbreak, the bound trip, and the missing-data run, the things that did not happen are the record: nothing published, no confidential project named, no date committed, nothing invented for a project with no data. The bound I would tune next is not one of the numbers. It is retrieval scoping, keeping a run to its own project's data, so the critic stops grading my drafts against another project's incidents.
+
+### M6: end-to-end run, the full loop in one pass
+
+Ran `python agent.py` one more time for the capstone, start to finish: the pulls (project record, activity, past updates, norms), a story proposal, three draft attempts, three critic verdicts, and a stop at the revision cap, which escalated to me with the draft held. Run cost about $0.0056. The final draft was grounded again, Yellow over open issue #825 with PRs #820 and #823 cited, and it still did not pass the critic, which kept reading status wording as commitment language. So the end-to-end capture for Module 6 is the supervised rung doing its job: the loop ran the whole way, and the last step was a human's desk, not a channel.
 
 ## How to run it
 
